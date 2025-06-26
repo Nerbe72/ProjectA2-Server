@@ -1,0 +1,76 @@
+{
+    "questList": [
+        {
+            "QuestID": 1,
+            "NameID": 80000001,
+            "DescriptionID": 81000001,
+            "Type": 0,
+            "PrerequisiteQuestID": 0,
+            "NextQuestIDs": [
+                2,
+                3
+            ],
+            "ReceiverNPCID": 90000003,
+            "Repeatable": false,
+            "Objectives": [
+                {
+                    "ObjectiveIndex": 0,
+                    "TargetID": 90000001,
+                    "Required": 0,
+                    "Interacted": false,
+                    "ObjectiveType": 0
+                }
+            ],
+            "Reward": {
+                "Currency": 0,
+                "itemIds": []
+            }
+        },
+        {
+            "QuestID": 2,
+            "NameID": 80000002,
+            "DescriptionID": 81000002,
+            "Type": 1,
+            "PrerequisiteQuestID": 1,
+            "NextQuestIDs": [],
+            "ReceiverNPCID": 90000003,
+            "Repeatable": false,
+            "Objectives": [
+                {
+                    "ObjectiveIndex": 0,
+                    "TargetID": 100001,
+                    "Required": 1,
+                    "Interacted": false,
+                    "ObjectiveType": 1
+                }
+            ],
+            "Reward": {
+                "Currency": 0,
+                "itemIds": []
+            }
+        },
+        {
+            "QuestID": 3,
+            "NameID": 80000003,
+            "DescriptionID": 81000003,
+            "Type": 0,
+            "PrerequisiteQuestID": 1,
+            "NextQuestIDs": [],
+            "ReceiverNPCID": 90000003,
+            "Repeatable": false,
+            "Objectives": [
+                {
+                    "ObjectiveIndex": 0,
+                    "TargetID": 0,
+                    "Required": 0,
+                    "Interacted": false,
+                    "ObjectiveType": 2
+                }
+            ],
+            "Reward": {
+                "Currency": 0,
+                "itemIds": []
+            }
+        }
+    ]
+}

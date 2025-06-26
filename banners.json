@@ -1,0 +1,32 @@
+{
+  "banners": [
+    {
+      "BannerType": "Pickup",
+      "BannerName": 100000001,
+      "SSR_PickupList": [10004],
+      "SR_PickupList": [10001, 10006],
+      "SSR_Percent": 1,
+      "SR_Percent": 19,
+      "SSR_PickupPercent": 50,
+      "CharacterPosition": { "x": 0, "y": 0 },
+      "BannerPath": "cecilia_banner",
+      "BackgroundPath": "cecilia_bg",
+      "SinglePrice": 1200,
+      "TenPrice": 12000
+    },
+    {
+      "BannerType": "None",
+      "BannerName": 100000002,
+      "SSR_PickupList": [],
+      "SR_PickupList": [],
+      "SSR_Percent": 1,
+      "SR_Percent": 19,
+      "SSR_PickupPercent": 0,
+      "CharacterPosition": { "x": 0, "y": 0 },
+      "BannerPath": "regular_banner",
+      "BackgroundPath": "regular_bg",
+      "SinglePrice": 1200,
+      "TenPrice": 10600
+    }
+  ]
+}
