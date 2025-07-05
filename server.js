@@ -1,18 +1,43 @@
 // server.js
 const express = require('express');
 const http = require('http');
-const bodyParser = require('body-parser');
-const jwt = require('jsonwebtoken');
-const socketIo = require('socket.io');
 const fs = require('fs');
 const path = require('path');
+const bodyParser = require('body-parser');
+const cookieParser = require('cookie-parser');
+const static = require('serve-static');
+
+const errorHandler = require('errorhandler');
+const expressErrorHandler = require('express-error-handler');
+const expressSession = require('express-session');
+const config = require('./routers/config');
+const route_loader = require('./routers/route_loader');
+
+const jwt = require('jsonwebtoken');
+
+const socketIo = require('socket.io');
 
 const app = express();
 const server = http.createServer(app);
 const io = socketIo(server);
 
+// 모든 요청을 로깅하는 미들웨어
+app.use((req, res, next) => {
+    console.log(`[${new Date().toISOString()}] ${req.method} ${req.url}`);
+    next();
+});
+
 const PORT = 3000;
 const secretKey = 'testkey';
+
+var router = express.Router();
+route_loader.init(app, router);
+
+var errorHandle = expressErrorHandler({
+    static : {
+        '404': './public/404.html'
+    }
+});
 
 // 정적 파일 제공 (예: 클라이언트 HTML/JS 파일들을 담은 public 폴더)
 app.use(express.static(path.join(__dirname, 'public')));
@@ -22,7 +47,7 @@ app.post('/login', (req, res) => {
     const { id, password } = req.body;
 
     // db.json 파일에서 사용자 정보 읽어오기
-    fs.readFile('./db.json', 'utf8', (err, data) => {
+    fs.readFile('./users/db.json', 'utf8', (err, data) => {
         if (err) {
             console.error('파일 읽기 에러:', err);
             return res.status(500).json({ message: '서버 에러' });
@@ -50,7 +75,7 @@ app.post('/login', (req, res) => {
 
 // 토큰 검증 미들웨어
 function verifyToken(req, res, next) {
-    const bearerHeader = req.headers['authorization'];
+    const bearerHeader = req.headers.authorization;
     if (!bearerHeader) {
         return res.status(403).json({ message: '토큰이 제공되지 않았습니다.' });
     }
